@@ -2,7 +2,7 @@
 #include<pigpio.h>
 
 #define PIN 17
-#define on 1
+#define ON 1
 
 int main(void)
 {
