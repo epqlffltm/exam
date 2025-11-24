@@ -18,5 +18,7 @@ int main(void)
 
   gpioWrite(pin,ON);
 
+  gpioTerminate();//라이브러리 종료
+
   return 0;
 }
