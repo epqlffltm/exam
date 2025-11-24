@@ -1,5 +1,5 @@
-import subprocess
 from flask import Flask, render_template
+import subprocess
 
 state = 'off'
 app = Flask(__name__)
@@ -7,7 +7,10 @@ app = Flask(__name__)
 def led_on_off(onoff):
     global state
     state = onoff
-    subprocess.run(['sudo', '/home/pi/exam/led_control', onoff])
+    if onoff == 'on':
+        subprocess.run(['sudo', '/home/pi/exam/code/on'])
+    elif onoff == 'off':
+        subprocess.run(['sudo', '/home/pi/exam/code/off'])
 
 @app.route('/')
 def index():
@@ -19,7 +22,7 @@ def led(onoff):
     print('led %s' % state)
     return render_template('index.html', state=onoff)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     print('Webserver starts.')
     app.run(debug=True, port=5000, host='0.0.0.0')
     print('Webserver ends.')
